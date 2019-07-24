@@ -63,7 +63,6 @@ function movieSearch() {
                 console.log("Error", error.message);
             }
             console.log(error.config);
-
         });
 }
 
@@ -71,41 +70,35 @@ function movieSearch() {
 function songSearch() {
     var spotify = new Spotify(keys.spotify);
 
-    if (process.argv.length > 3) {
+    if (!userInput) {
+        spotify.search({ type: 'track', query: "The Sign by Ace of Base", limit: 3 })
+            .then(function (response) {
+                var artist = response.tracks.items[0].album.artists[0].name;
+                var album = response.tracks.items[0].album.name;
+                var previewLink = response.tracks.items[0].preview_url
+                var songName = response.tracks.items[0].name
+    
+                console.log("Artist: " + artist);
+                console.log("Song: " + songName);
+                console.log("Album: " + album);
+                console.log("Preview Link: " + previewLink);
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
+        }
+    else {
         spotify.search({ type: 'track', query: userInput, limit: 3 })
         .then(function (response) {
-
             var artist = response.tracks.items[0].album.artists[0].name;
             var album = response.tracks.items[0].album.name;
             var previewLink = response.tracks.items[0].preview_url
             var songName = response.tracks.items[0].name
-            // response = JSON.stringify(response);
 
             console.log("Artist: " + artist);
             console.log("Song: " + songName);
             console.log("Album: " + album);
             console.log("Preview Link: " + previewLink);
-            // console.log(response.tracks.items[0].external_urls.spotify)
-        })
-        .catch(function (err) {
-            console.log(err);
-        })
-    }
-    else {
-    spotify.search({ type: 'track', query: "The Sign by Ace of Base", limit: 3 })
-        .then(function (response) {
-
-            var artist = response.tracks.items[0].album.artists[0].name;
-            var album = response.tracks.items[0].album.name;
-            var previewLink = response.tracks.items[0].preview_url
-            var songName = response.tracks.items[0].name
-            // response = JSON.stringify(response);
-
-            console.log("Artist: " + artist);
-            console.log("Song: " + songName);
-            console.log("Album: " + album);
-            console.log("Preview Link: " + previewLink);
-            // console.log(response.tracks.items[0].external_urls.spotify)
         })
         .catch(function (err) {
             console.log(err);
@@ -115,10 +108,8 @@ function songSearch() {
 
 //concert-this (Bands In Town)
 function eventSearch() {
-
     var bandsURL = "https://rest.bandsintown.com/artists/" + userInput + "/events?app_id=codingbootcamp";
 
-    // console.log(bandsURL)
         axios.get(bandsURL).then(
             function (response) {
                 var location = response.data[0].venue.city + ", " +
@@ -132,22 +123,21 @@ function eventSearch() {
                 console.log("Location: " + location);
                 console.log("Date: " + dateFormatted);
             })
-        // .catch(function(error) {
-        //     if (error.response) {
-        //       console.log("---------------Data---------------");
-        //       console.log(error.response.data);
-        //       console.log("---------------Status---------------");
-        //       console.log(error.response.status);
-        //       console.log("---------------Status---------------");
-        //       console.log(error.response.headers);
-        //     } else if (error.request) {
-        //       console.log(error.request);
-        //     } else {
-        //       console.log("Error", error.message);
-        //     }
-        //     console.log(error.config);
-
-        //   });
+        .catch(function(error) {
+            if (error.response) {
+              console.log("---------------Data---------------");
+              console.log(error.response.data);
+              console.log("---------------Status---------------");
+              console.log(error.response.status);
+              console.log("---------------Status---------------");
+              console.log(error.response.headers);
+            } else if (error.request) {
+              console.log(error.request);
+            } else {
+              console.log("Error", error.message);
+            }
+            console.log(error.config);
+          });
 }
 
 // do-what-it-says
@@ -158,26 +148,10 @@ function doWhatItSay () {
         }  
         var data =  data.split(",")
 
-        // if (data[0] === 'do-what-it-says') {
-        //     console.log('Nice try')
-        //     return
-        // }
-        // var result = 0;
-
-       
         command = data[0]
         userInput = data[1]
         
-
-        // for (var i = 0; i< data.length; i++) {
-        //     if (data[i]) {
-        //         result += data[i]
-        //     }
-        // }
-
-        // console.log(data[0]);
         dispatch(command);
-        // var data = data[0]
         console.log(data)
     })
 }
