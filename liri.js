@@ -4,6 +4,7 @@ var fs = require("fs");
 var keys = require("./keys.js");
 var Spotify = require('node-spotify-api');
 var axios = require("axios");
+var moment = require("moment");
 
 var command = process.argv[2];
 var userInput = process.argv.slice(3).join("+");
@@ -68,14 +69,10 @@ function movieSearch() {
 
 //spotify-this-song
 function songSearch() {
-
     var spotify = new Spotify(keys.spotify);
 
-    // var spotifyURI = spotify':'songName":""6rqhFgbbKwnb9MLmUQDhG6"
-    // var spotifyURL = "http://open.spotify.com/"+ songName + "/6rqhFgbbKwnb9MLmUQDhG6"
-
-    //if (command === "spotify-this-song")
-    spotify.search({ type: 'track', query: userInput, limit: 3 })
+    if (process.argv.length > 3) {
+        spotify.search({ type: 'track', query: userInput, limit: 3 })
         .then(function (response) {
 
             var artist = response.tracks.items[0].album.artists[0].name;
@@ -93,6 +90,27 @@ function songSearch() {
         .catch(function (err) {
             console.log(err);
         })
+    }
+    else {
+    spotify.search({ type: 'track', query: "The Sign by Ace of Base", limit: 3 })
+        .then(function (response) {
+
+            var artist = response.tracks.items[0].album.artists[0].name;
+            var album = response.tracks.items[0].album.name;
+            var previewLink = response.tracks.items[0].preview_url
+            var songName = response.tracks.items[0].name
+            // response = JSON.stringify(response);
+
+            console.log("Artist: " + artist);
+            console.log("Song: " + songName);
+            console.log("Album: " + album);
+            console.log("Preview Link: " + previewLink);
+            // console.log(response.tracks.items[0].external_urls.spotify)
+        })
+        .catch(function (err) {
+            console.log(err);
+        })
+    }
 }
 
 //concert-this (Bands In Town)
@@ -105,12 +123,14 @@ function eventSearch() {
             function (response) {
                 var location = response.data[0].venue.city + ", " +
                     response.data[0].venue.region + " " +
-                    response.data[0].venue.country
-
-                console.log(response.data[0].venue.name)
-                console.log(response.data[0].datetime)
-                console.log(location)
-
+                    response.data[0].venue.country;
+                var date = response.data[0].datetime;
+                // date = data.split(", ")
+                var dateFormatted = moment(date, "YYYY-MM-DDTHH:mm:ss").format("MM/DD/YYYY")
+            
+                console.log("Venue: " + response.data[0].venue.name);
+                console.log("Location: " + location);
+                console.log("Date: " + dateFormatted);
             })
         // .catch(function(error) {
         //     if (error.response) {
@@ -130,7 +150,6 @@ function eventSearch() {
         //   });
 }
 
-
 // do-what-it-says
 function doWhatItSay () {
     fs.readFile("random.txt", "utf8", function (err, data) {
@@ -138,7 +157,17 @@ function doWhatItSay () {
             return console.log(err);
         }  
         var data =  data.split(",")
+
+        // if (data[0] === 'do-what-it-says') {
+        //     console.log('Nice try')
+        //     return
+        // }
         // var result = 0;
+
+       
+        command = data[0]
+        userInput = data[1]
+        
 
         // for (var i = 0; i< data.length; i++) {
         //     if (data[i]) {
