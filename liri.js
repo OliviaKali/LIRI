@@ -30,12 +30,16 @@ function dispatch(command) {
 
 //movie-this
 function movieSearch() {
-    if(process.argv.length > 3){
-        var queryUrl = "http://www.omdbapi.com/?t=" + userInput + "&y=&plot=short&apikey=trilogy";
-        var type = "movie";    
-    } else {
+    if(!userInput){
         var queryUrl = "http://www.omdbapi.com/?t=Mr.+Nobody&y=&plot=short&apikey=trilogy";
         var type = "movie";
+        console.log("-----------------------------"
+        + "\nYou forgot to include a movie!" 
+        + "\nHere's some information on Mr. Nobody!" 
+        + "\n-----------------------------")  
+    } else {
+    var queryUrl = "http://www.omdbapi.com/?t=" + userInput + "&y=&plot=short&apikey=trilogy";
+        var type = "movie";  
     }
 
     axios.get(queryUrl).then(
@@ -77,7 +81,10 @@ function songSearch() {
                 var album = response.tracks.items[0].album.name;
                 var previewLink = response.tracks.items[0].preview_url
                 var songName = response.tracks.items[0].name
-    
+                console.log("-----------------------------"
+                + "\nYou forgot to include a song!" 
+                + "\nHere's some information on The Signnod!" 
+                + "\n-----------------------------")  
                 console.log("Artist: " + artist);
                 console.log("Song: " + songName);
                 console.log("Album: " + album);
