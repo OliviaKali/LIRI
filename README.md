@@ -6,7 +6,7 @@ Liri uses the commands (movie-this, concert-this, spotify-this-song, and do-what
 
 https://www.youtube.com/watch?v=4CCHaqHeAyU
 
-[![Video of LIRI](https://img.youtube.com/vi/4CCHaqHeAyU/0.jpg)1(www.youtube.com/watch?v=4CCHaqHeAyU)]
+[![Video of LIRI](https://img.youtube.com/vi/4CCHaqHeAyU/0.jpg)](www.youtube.com/watch?v=4CCHaqHeAyU)
 
 ## movie-this
 node liri.js movie-this userInput
