@@ -83,7 +83,7 @@ function songSearch() {
                 var songName = response.tracks.items[0].name
                 console.log("-----------------------------"
                 + "\nYou forgot to include a song!" 
-                + "\nHere's some information on The Signnod!" 
+                + "\nHere's some information on The Sign!" 
                 + "\n-----------------------------")  
                 console.log("Artist: " + artist);
                 console.log("Song: " + songName);
