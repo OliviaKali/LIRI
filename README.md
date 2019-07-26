@@ -9,43 +9,28 @@ Example of how LIRI works: https://youtu.be/_FpYNp-b1xg
 [![Video of LIRI](https://img.youtube.com/vi/_FpYNp-b1xg/0.jpg)](https://youtu.be/_FpYNp-b1xg)
 
 ## movie-this
-node liri.js movie-this userInput
-
 This command returns information from the `axios` package to retrieve data from the OMDB API. From this API, I selected specific information that I wanted to be displayed to the user once they input a movie.
 
--Title
--Release Year
--IMDB Rating
--Rotten Tomatoes Rating
--Language
--Plot
--Cast
+![Image of movie-this-userInput](images/movie-this.PNG "movie-this-userInput")
 
-Additionally, if the user forgets to put a movie in the command line, and only writes: node liri.js movie-this
-I choose to have the movie, Mr. Nobody, return the same information as if the user included a movie in the search. 
+
+Additionally, if the user forgets to put a movie in the command line, I choose to have the movie, Mr. Nobody, return the same information as if the user included a movie in the search. 
+
+![Image of movie-this](images/movie-this-else.PNG "movie-this")
 
 ## concert-this
-node liri.js concert-this userInput
-
 This command returns concert details from the `axios` package from the Bands in Town Artist Events API. The user inputs an artist and I chose the following information to be output.
 
--Name of the Venue
--Location of the Venue
--Date of the next available show
+![Image of concert-this-userInput](images/concert-this.PNG "concert-this-userInput")
 
 ## spotify-this-song
-node liri.js spotify-this-song userInput
-
 This command returns information from the Spotify API. Two API keys were required to pull the information, which I have placed in a .env file to keep them hidden. I have choosen the following information to populate when the command is run with the user's song choice. 
 
--Artist
--Name of the song
--Preview Link
--Album
+![Image of spotify-this-song-userInput](images/spotify-this-song.PNG "spotify-this-song-userInput")
 
-If the user does not input a song and only writes: 
-node liri.js spotify-this-song
-The following data will be returned for the song "The Sign" by Ace of Base.
+If the user does not input a songg. The following data will be returned for the song "The Sign" by Ace of Base.
+
+![Image of spotify-this-song](images/spotify-this-song-else.PNG "spotify-this-song-else")
 
 ## do-what-it-says
 This command uses the built in `fs` node package to read random.txt and call one of LIRI's other three commands. The command that I put in the random.txt file is spotify-this-song for "I Want it that Way" by the Backstreet Boys.
