@@ -50,7 +50,7 @@ The following data will be returned for the song "The Sign" by Ace of Base.
 ## do-what-it-says
 This command uses the built in `fs` node package to read random.txt and call one of LIRI's other three commands. The command that I put in the random.txt file is spotify-this-song for "I Want it that Way" by the Backstreet Boys.
 
-![Image of do-what-it-says](images/LIRI-do-what-it-says.png "do-what-it-says")
+![Image of do-what-it-says](images/LIRI-do-what-it-says.PNG "do-what-it-says")
 
 
 
