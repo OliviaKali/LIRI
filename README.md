@@ -4,7 +4,7 @@ Liri is an Language Interpretation and Recognition Interface, similiar to SIRI. 
 
 Liri uses the commands (movie-this, concert-this, spotify-this-song, and do-what-it-says). Each command returns a different result using APIs to provide accurate information that is requested by the user from the terminal/bash window. The user can request information on movies, songs, and concert details for specific artists.
 
-![Image of Yaktocat](https://drive.google.com/file/d/1_ecLzwr6yC42_WaxkaOd3Vg1QVNj4BY2/view)
+![Video of LIRI](https://drive.google.com/file/d/1_ecLzwr6yC42_WaxkaOd3Vg1QVNj4BY2/view)
 
 ## movie-this
 node liri.js movie-this userInput
